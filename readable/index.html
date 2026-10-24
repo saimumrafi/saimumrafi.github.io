@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafi — Product & Strategy</title>
+<meta name="description" content="Rafi: product, strategy and technology. In-depth case studies, process and experience.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0a111f;--bg2:#0a111f;--text:#f1f5f9;--muted:#b4c0d4;--dim:#9aa8bd;--line:rgba(148,163,184,.22)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:22px 6%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,17,31,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-size:21px;font-weight:800;letter-spacing:-1px}.logo span{opacity:.4}
+nav ul{display:flex;gap:26px}nav a{font-size:12px;color:#b6c2d4;transition:.3s}nav a:hover{color:#fff}
+.progress{position:fixed;top:0;left:0;height:2px;background:#3b82f6;z-index:200;width:0}
+.hero{height:100svh;min-height:680px;position:relative;display:flex;align-items:flex-end;padding:0 6% 9vh;overflow:hidden;background:var(--bg2)}
+.hero-media{position:absolute;inset:0;display:flex;justify-content:flex-end;overflow:hidden}
+.hero-media:after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(10,17,31,.98) 0%,rgba(10,17,31,.72) 36%,rgba(10,17,31,.18) 70%,rgba(10,17,31,.48) 100%),linear-gradient(0deg,rgba(10,17,31,.85),transparent 45%)}
+.portrait{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(8%) contrast(1.05) saturate(.95);transform:scale(1.08);transform-origin:50% 25%;transition:transform .25s ease-out;will-change:transform}
+.hero-content{position:relative;z-index:3;max-width:950px}
+.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#7fb0ee;margin-bottom:25px;animation:up .9s 2.1s both}
+h1{font-size:clamp(64px,10vw,150px);line-height:.84;letter-spacing:-8px;margin-bottom:30px;animation:up 1s 2.25s both}h1 span{color:#6b88b0}
+.hero-description{max-width:570px;color:#c3cedd;line-height:1.8;font-size:16px;animation:up 1s 2.45s both}
+.buttons{display:flex;gap:12px;margin-top:34px;animation:up 1s 2.6s both}
+.btn{padding:15px 24px;border-radius:100px;font-size:12px;border:1px solid var(--line);transition:transform .35s}
+.primary{background:#3b82f6;color:#fff;border-color:#3b82f6}.btn:hover{transform:translateY(-5px)}
+section{padding:130px 7%;position:relative}
+.label{color:#6f8bb0;text-transform:uppercase;letter-spacing:3px;font-size:10px;margin-bottom:22px}
+.title{font-size:clamp(40px,5.6vw,78px);line-height:.96;letter-spacing:-4px;margin-bottom:60px}
+.lead{color:var(--muted);line-height:1.9;font-size:16px;max-width:720px}.lead strong{color:#fff}.lead p+p{margin-top:18px}
+.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:80px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat{padding:26px;border:1px solid var(--line);background:#0f1829;transition:.4s}
+.stat:hover{transform:translateY(-6px);background:#14203a}
+.stat h3{font-size:36px}.stat p{color:#8b9ab0;font-size:12px;margin-top:8px;line-height:1.6}
+.sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#6f8bb0;margin:70px 0 24px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:26px;border:1px solid var(--line);background:#0f1829;transition:.4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(96,165,250,.45)}
+.card h4{font-size:17px;margin-bottom:10px}.card p{color:var(--dim);font-size:13px;line-height:1.7}
+.case{border:1px solid var(--line);background:#0f1829;padding:44px;margin-bottom:28px;position:relative;overflow:visible}
+
+.case-head{position:relative;margin-bottom:34px}
+.num{font-size:11px;color:#64748b}
+.case h3{font-size:clamp(34px,4.4vw,56px);letter-spacing:-2px;margin:10px 0 12px}
+.tagline{color:#c3cedd;font-size:17px;line-height:1.6;max-width:760px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+.meta div span{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#64748b;margin-bottom:6px}
+.meta div{font-size:13px;color:#cbd5e1;line-height:1.5}
+.blocks{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 44px;position:relative}
+.block h4{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#7fa6d6;margin-bottom:12px}
+.block p,.block li{color:var(--dim);font-size:14px;line-height:1.75}
+.block li{padding-left:16px;position:relative;margin-bottom:6px}
+.block li:before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:#7fa6d6}
+.block strong{color:#e2e8f0;font-weight:600}
+.block.wide{grid-column:1/-1}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tag{border:1px solid var(--line);padding:7px 12px;border-radius:30px;color:#94a3b8;font-size:10px}
+.note{margin-top:26px;font-size:12px;color:#64748b;font-style:italic}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.step{counter-increment:s;padding:24px;border:1px solid var(--line);background:#0f1829}
+.step:before{content:"0" counter(s);font-size:11px;color:#64748b;display:block;margin-bottom:34px}
+.step h4{font-size:16px;margin-bottom:8px}.step p{color:var(--dim);font-size:12.5px;line-height:1.7}
+.timeline{border-left:1px solid var(--line);margin-left:8px}
+.item{padding:0 0 56px 42px;position:relative}
+.item:before{content:"";position:absolute;left:-5px;top:3px;width:9px;height:9px;border-radius:50%;background:#60a5fa}
+.date{font-size:11px;color:#64748b;margin-bottom:12px}.item h3{font-size:23px;margin-bottom:4px}
+.role{color:#7fa6d6;font-size:13px;margin-bottom:12px}
+.item p{color:var(--dim);line-height:1.75;max-width:720px;font-size:14px}
+.item ul{margin-top:12px;max-width:720px}.item li{color:var(--dim);font-size:13.5px;line-height:1.7;padding-left:16px;position:relative;margin-bottom:5px}
+.item li:before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:#7fa6d6}
+.skillgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skillbox{padding:28px;border:1px solid var(--line);background:#0f1829}
+.skillbox h4{font-size:15px;margin-bottom:6px}.skillbox>p{color:var(--dim);font-size:12.5px;line-height:1.6;margin-bottom:16px}
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.skill{padding:9px 14px;border:1px solid var(--line);border-radius:100px;color:#aebbd0;font-size:11.5px;transition:.3s}
+.skill:hover{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.bar{margin-bottom:14px}.bar div{display:flex;justify-content:space-between;font-size:12px;color:#b6c2d4;margin-bottom:6px}
+.bar i{display:block;height:3px;background:rgba(255,255,255,.08)}.bar b{display:block;height:3px;background:linear-gradient(90deg,#3b82f6,#7fb0ee);width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.contact{min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.contact h2{font-size:clamp(55px,9vw,125px);line-height:.86;letter-spacing:-7px;max-width:1000px}
+.contact p{color:var(--dim);margin:30px 0;line-height:1.8;max-width:560px}
+.cl{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.clink{padding:15px 22px;border:1px solid var(--line);border-radius:100px;font-size:12px;color:#e2e8f0;transition:transform .3s,background .3s}
+.clink:hover{transform:translateY(-4px);background:rgba(255,255,255,.06)}
+.clink.p{background:#3b82f6;color:#fff;border-color:#3b82f6}
+footer{padding:28px 7%;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#64748b;font-size:10px;gap:12px;flex-wrap:wrap}
+footer a:hover{color:#f1f5f9}
+.reveal{opacity:0;translate:0 50px;transition:opacity 1s,translate 1s cubic-bezier(.2,.75,.2,1),transform .2s ease-out,background .4s,border-color .4s}.reveal.active{opacity:1;translate:0 0}
+@keyframes up{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}
+@keyframes pin{from{opacity:0}to{opacity:1}}
+@media(max-width:1000px){.steps{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr 1fr}.meta{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){
+nav ul{display:none}
+.hero-media{justify-content:center}.portrait{width:100%;object-position:50% 12%}
+.hero-media:after{background:linear-gradient(0deg,rgba(10,17,31,.98) 0%,rgba(10,17,31,.48) 55%,rgba(10,17,31,.35) 100%)}
+h1{letter-spacing:-5px}section{padding:90px 6%}.title{letter-spacing:-3px}
+.grid2,.blocks,.skillgrid,.cards,.steps{grid-template-columns:1fr}.grid2{gap:36px}
+.case{padding:26px}.contact h2{letter-spacing:-4px}
+.cl{flex-direction:column;width:100%;max-width:360px}footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+h1 span{text-shadow:0 1px 0 #1e2a40,0 2px 0 #18233a,0 3px 0 #131c30,0 4px 0 #0f1728,0 10px 24px rgba(0,0,0,.55)}
+.tilt{transform-style:preserve-3d;will-change:transform;transition:transform .2s ease-out,background .4s,border-color .4s}
+.tilt>*{transform:translateZ(22px)}
+.tilt .num,.tilt h3,.tilt h4{transform:translateZ(34px)}
+.stat,.card,.step,.skillbox{position:relative;box-shadow:0 18px 40px -22px rgba(0,0,0,.7)}
+.stat:hover,.card:hover{transform:none}
+
+
+
+
+
+
+
+
+.float{animation:flt 6s ease-in-out infinite}
+.orbit{position:absolute;right:-120px;bottom:-120px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(96,165,250,.18);transform:rotateX(70deg) rotateZ(0);animation:orb 24s linear infinite;pointer-events:none}
+.orbit:after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:#60a5fa;box-shadow:0 0 18px #60a5fa}
+.contact{perspective:1000px;overflow:hidden}
+
+@keyframes flt{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes orb{from{transform:rotateX(70deg) rotateZ(0)}to{transform:rotateX(70deg) rotateZ(360deg)}}
+
+
+.title,.contact h2{text-shadow:0 1px 0 #1b2740,0 2px 0 #162036,0 3px 0 #111a2d,0 4px 0 #0d1526,0 12px 26px rgba(0,0,0,.5)}
+.projgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.proj{padding:32px;border:1px solid var(--line);background:#0f1829;display:flex;flex-direction:column;box-shadow:0 22px 44px -24px rgba(0,0,0,.75)}
+.proj .num{font-size:11px;color:#64748b;margin-bottom:56px}
+.proj h3{font-size:25px;letter-spacing:-.5px;line-height:1.2;margin-bottom:8px}
+.proj .stack{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#7fa6d6;margin-bottom:18px}
+.proj ul{margin-bottom:24px}
+.proj li{color:var(--dim);font-size:13.5px;line-height:1.7;padding-left:16px;position:relative;margin-bottom:8px}
+.proj li:before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:#7fa6d6}
+.proj .tags{margin-top:auto;margin-bottom:18px}
+.gh{align-self:flex-start;display:inline-flex;gap:8px;padding:12px 18px;border:1px solid var(--line);border-radius:100px;font-size:12px;color:#e2e8f0;transition:background .3s,border-color .3s}
+.gh:hover{background:#3b82f6;border-color:#3b82f6;color:#fff}
+@media(max-width:1000px){.projgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.projgrid{grid-template-columns:1fr}}
+
+.cycle{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:8px 0 34px}
+.cycle span{padding:10px 16px;border:1px solid var(--line);border-radius:100px;font-size:12px;color:#cbd5e1;background:#0f1829}
+.cycle i{color:#60a5fa;font-style:normal;font-size:13px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:10px}
+.col{background:#0c1424;border:1px solid var(--line);padding:16px;min-height:230px}
+.col h5{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7fa6d6;margin-bottom:14px;font-weight:600}
+.col h5 em{font-style:normal;font-size:10px;letter-spacing:1px;color:#94a3b8;border:1px solid var(--line);padding:3px 8px;border-radius:20px}
+.kc{background:#14203a;border:1px solid rgba(148,163,184,.2);padding:12px 14px;margin-bottom:10px;font-size:12.5px;line-height:1.5;color:#dbe4f0;box-shadow:0 10px 20px -14px rgba(0,0,0,.8)}
+.kc small{display:block;color:#7fa6d6;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.compare .case{margin-bottom:0}
+.compare .blocks{grid-template-columns:1fr}
+.blend{margin-top:20px;padding:30px;border:1px solid rgba(96,165,250,.35);background:#0f1829}
+.blend h4{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#7fa6d6;margin-bottom:12px}
+.blend p{color:var(--muted);font-size:14.5px;line-height:1.8;max-width:900px}
+.mapcard .m{display:inline-block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7fa6d6;border:1px solid var(--line);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.mapcard p+p{margin-top:10px}.mapcard b{color:#e2e8f0;font-weight:600}
+@media(max-width:1000px){.board{grid-template-columns:1fr 1fr}.compare{grid-template-columns:1fr}}
+@media(max-width:800px){.board{grid-template-columns:1fr}}
+
+/* ===== 3D + motion that works on every device (no hover needed) ===== */
+section{perspective:1600px}
+.reveal{rotate:x 14deg;scale:.97;transition:opacity 1s,translate 1s cubic-bezier(.2,.75,.2,1),rotate 1s cubic-bezier(.2,.75,.2,1),scale 1s,transform .15s ease-out,background .4s,border-color .4s}
+.reveal.active{rotate:x 0deg;scale:1}
+.tilt,.tilt:hover{transform-style:preserve-3d;will-change:transform;transform:perspective(1000px) rotateX(calc(var(--sx,0deg) + var(--rx,0deg))) rotateY(var(--ry,0deg)) translateZ(var(--tz,0px));transition:transform .15s ease-out,background .4s,border-color .4s}
+.stat,.card,.step,.skillbox,.kc{animation:bob 7s ease-in-out infinite}
+.stat:nth-child(2n),.card:nth-child(2n),.step:nth-child(2n),.skillbox:nth-child(2n),.kc:nth-child(2n){animation-delay:-3.5s}
+.card:nth-child(3n),.stat:nth-child(3n){animation-delay:-1.8s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+
+
+
+
+
+
+
+
+
+
+.btn,.clink,.gh{position:relative;overflow:hidden}
+.btn.primary:after,.clink.p:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:shine 3.8s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-60%}100%{left:140%}}
+nav a{position:relative}nav a:after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:#60a5fa;transition:width .3s}nav a:hover:after{width:100%}
+.progress{box-shadow:0 0 12px #3b82f6}
+@media(max-width:800px){}
+@media(prefers-reduced-motion:reduce){.stat,.card,.step,.skillbox,.kc,.reveal{rotate:none;scale:1}}
+
+/* ===== Intro: loader cube, then the whole portfolio spins into place ===== */
+.loader{position:fixed;inset:0;z-index:999;background:#0a111f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;animation:ldOut .9s ease 1.7s forwards}
+.lscene{width:96px;height:96px;perspective:700px}
+.lcube{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:lspin 2.4s cubic-bezier(.6,.1,.3,1) infinite}
+.lcube i{position:absolute;inset:0;border:1.5px solid #60a5fa;background:rgba(59,130,246,.1);box-shadow:inset 0 0 20px rgba(59,130,246,.3),0 0 20px rgba(59,130,246,.15)}
+.lcube i:nth-child(1){transform:translateZ(48px)}.lcube i:nth-child(2){transform:rotateY(180deg) translateZ(48px)}
+.lcube i:nth-child(3){transform:rotateY(90deg) translateZ(48px)}.lcube i:nth-child(4){transform:rotateY(-90deg) translateZ(48px)}
+.lcube i:nth-child(5){transform:rotateX(90deg) translateZ(48px)}.lcube i:nth-child(6){transform:rotateX(-90deg) translateZ(48px)}
+.ltxt{font-size:22px;font-weight:800;letter-spacing:-1px;color:#f1f5f9}.ltxt span{opacity:.4}
+.lbar{width:160px;height:2px;background:rgba(148,163,184,.2);overflow:hidden}
+.lbar b{display:block;height:100%;width:0;background:#3b82f6;animation:lfill 1.6s ease forwards}
+.page{animation:pageIn 1.7s cubic-bezier(.2,.8,.2,1) 1.6s both;transform-origin:50% 30%}
+@keyframes lspin{0%{transform:rotateX(-20deg) rotateY(0)}100%{transform:rotateX(-20deg) rotateY(360deg)}}
+@keyframes lfill{to{width:100%}}
+@keyframes ldOut{to{opacity:0;visibility:hidden}}
+@keyframes pageIn{0%{opacity:0;transform:perspective(1800px) rotateY(-80deg) rotateX(8deg) scale(.6)}
+ 55%{opacity:1}
+ 100%{opacity:1;transform:none}}
+/* whole sections tilt gently as they pass through the screen */
+section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transform .15s ease-out}
+@media(prefers-reduced-motion:reduce){.loader{display:none}.page{animation:none}section{transform:none}}
+
+/* ===== Eye-catching animated portrait ===== */
+.pwrap{position:relative;width:58%;height:100%;overflow:hidden;opacity:0;transform-origin:50% 50%;--sw:10deg;
+ animation:pspin 1.8s cubic-bezier(.2,.8,.2,1) 2.6s both,swivel 11s ease-in-out 4.5s infinite,pbob 6s ease-in-out 4.5s infinite}
+.shine{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;transform:translateX(-120%);
+ background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.2) 47%,rgba(127,176,238,.28) 52%,transparent 64%);animation:sweep 5.5s ease-in-out 4.6s infinite}
+.glow{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 100px rgba(59,130,246,.34),inset 0 0 22px rgba(127,176,238,.25);animation:gpulse 3.6s ease-in-out infinite}
+@keyframes pspin{0%{opacity:0;transform:perspective(1400px) rotateY(-200deg) scale(.7)}40%{opacity:1}100%{opacity:1;transform:perspective(1400px) rotateY(0) scale(1.03)}}
+@keyframes swivel{0%,100%{opacity:1;transform:perspective(1400px) rotateY(0) scale(1.03)}25%{opacity:1;transform:perspective(1400px) rotateY(var(--sw)) scale(1.03)}75%{opacity:1;transform:perspective(1400px) rotateY(calc(var(--sw) * -1)) scale(1.03)}}
+@keyframes pbob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes sweep{0%{transform:translateX(-120%)}38%,100%{transform:translateX(120%)}}
+@keyframes gpulse{0%,100%{opacity:.35}50%{opacity:1}}
+@media(max-width:800px){.pwrap{width:100%;--sw:6deg}}
+@media(prefers-reduced-motion:reduce){.pwrap{animation:none;opacity:1}.shine,.glow{animation:none}}
+</style>
+<noscript><style>.reveal{opacity:1!important;translate:none!important;rotate:none!important;scale:1!important}</style></noscript>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="loader"><div class="lscene"><div class="lcube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="ltxt">RAFI<span>.</span></div><div class="lbar"><b></b></div></div>
+<div class="page">
+
+<nav>
+  <div class="logo">RAFI<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#methodology">Methods</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#toolkit">Toolkit</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-media"><div class="pwrap"><img class="portrait" src="rafi.jpg" alt="Rafi portrait"><span class="shine"></span><span class="glow"></span></div></div>
+  <div class="hero-content">
+    <div class="eyebrow">Product · Strategy · Technology</div>
+    <h1>I build<br><span>what matters.</span></h1>
+    <p class="hero-description">I turn ambiguous problems into useful products, combining product thinking, business strategy, technology and human behavior.</p>
+    <div class="buttons">
+      <a href="#work" class="btn primary">Read Case Studies</a>
+      <a href="#contact" class="btn">Let's Talk</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="label reveal">01 — About</div>
+  <h2 class="title reveal">Ideas are easy.<br>Execution is the edge.</h2>
+  <div class="grid2 reveal">
+    <div class="lead">
+      <p>I'm a product-focused builder who enjoys taking ideas from <strong>zero → one.</strong> Based in <strong>Bangladesh</strong>, I work at the meeting point of product, business and technology, with a focus on AI, SaaS and automation for emerging markets.</p>
+      <p>I care about understanding <strong>why a product should exist</strong> before deciding what to build. Most failed products don't fail on engineering; they fail because nobody validated that the problem was painful, frequent and worth paying to solve.</p>
+      <p>My background combines self-directed product study with competitive <strong>Model United Nations</strong>, which trained me to research fast, argue a position under pressure, negotiate between competing interests and make decisions with incomplete information. Those are the same skills early-stage product work demands.</p>
+      <p>I'm now building and researching AI-powered products, looking for teams and problems where careful thinking and fast execution both matter.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><h3>01</h3><p>Product Thinking<br>Discovery, PRDs, roadmaps</p></div>
+      <div class="stat"><h3>02</h3><p>Business Strategy<br>Models, markets, GTM</p></div>
+      <div class="stat"><h3>03</h3><p>AI & Technology<br>Agents, automation, SaaS</p></div>
+      <div class="stat"><h3>04</h3><p>Execution<br>Shipping, iterating, learning</p></div>
+    </div>
+  </div>
+
+  <div class="sub reveal">How I think — operating principles</div>
+  <div class="cards reveal">
+    <div class="card"><h4>Problem before product</h4><p>I write the problem statement, the user and the success measure before any feature list. If I can't state who hurts and how much, I'm not ready to build.</p></div>
+    <div class="card"><h4>Humans stay in control</h4><p>Especially with AI, good products make people more capable, not more passive. I design approval points, transparency and easy overrides in from day one.</p></div>
+    <div class="card"><h4>Local context wins</h4><p>Frameworks from Silicon Valley rarely fit emerging markets unchanged. Payments, trust, language, informal processes and margins all shape what actually works.</p></div>
+    <div class="card"><h4>Smallest testable bet</h4><p>I break big visions into the cheapest experiment that could prove me wrong: an interview, a manual pilot, a landing page, before writing production code.</p></div>
+    <div class="card"><h4>Decide with evidence, move with speed</h4><p>Perfect information doesn't exist. I set decision rules in advance, then commit, learn and adjust instead of stalling.</p></div>
+    <div class="card"><h4>Write it down</h4><p>Clear writing is clear thinking. PRDs, decision logs and one-page strategies keep teams aligned and make my reasoning easy to challenge.</p></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="label reveal">02 — Selected Work</div>
+  <h2 class="title reveal">Case studies,<br>in depth.</h2>
+
+  <article class="case reveal">
+    <div class="case-head">
+      <div class="num">CASE 01</div>
+      <h3>Agentra</h3>
+      <p class="tagline">An AI-agent operations platform that lets small and mid-sized businesses delegate repetitive back-office work to autonomous agents, while humans stay in control.</p>
+      <div class="meta">
+        <div><span>Role</span>Founder, product & strategy</div>
+        <div><span>Stage</span>Concept & validation</div>
+        <div><span>Timeline</span>2026 — Present</div>
+        <div><span>Domain</span>AI agents · SaaS · SME ops</div>
+      </div>
+    </div>
+    <div class="blocks">
+      <div class="block"><h4>The problem</h4><p>SMEs run on repetitive manual work: invoice entry, follow-ups, order tracking, report compiling, data copy-paste between tools. They can't afford large ops teams or enterprise automation, so owners and staff burn hours on low-value tasks, and mistakes creep in.</p></div>
+      <div class="block"><h4>Who it's for</h4><ul><li><strong>Primary:</strong> owner-operators and operations managers at businesses of roughly 10–200 people</li><li><strong>Secondary:</strong> accountants and agencies serving many small clients</li><li><strong>Not for (yet):</strong> large enterprises with dedicated IT and RPA teams</li></ul></div>
+      <div class="block"><h4>Core insight</h4><p>Existing automation tools demand setup effort that SMEs don't have, while fully autonomous AI is too risky to trust with money and customers. The gap is <strong>delegation with supervision</strong>: agents that do the work, and people who approve what matters.</p></div>
+      <div class="block"><h4>Solution</h4><ul><li>Role-based agents (e.g. finance, procurement, customer follow-up) configured in plain language</li><li>Human-in-the-loop approvals for high-risk actions</li><li>Full activity log: what the agent did, why, and with which data</li><li>Connectors into the tools businesses already use</li></ul></div>
+      <div class="block"><h4>Product principles</h4><ul><li><strong>Trust ladder:</strong> agents start read-only, then suggest, then act with approval, then act autonomously on low-risk tasks</li><li><strong>Explainable by default:</strong> every action has a readable reason</li><li><strong>Reversible where possible:</strong> undo and audit trails</li></ul></div>
+      <div class="block"><h4>Business model</h4><p>Subscription per workspace with usage tiers by number of agents and monthly tasks, plus paid onboarding for custom workflows. Margin is protected by routing simple tasks to cheaper models and reserving stronger models for complex reasoning.</p></div>
+      <div class="block"><h4>Go-to-market hypothesis</h4><ul><li>Start with one narrow, painful workflow (such as invoice and payment follow-up) rather than a general platform</li><li>Run manual-assisted pilots with 5–10 design partners</li><li>Grow through accountants and consultants who bring multiple clients</li></ul></div>
+      <div class="block"><h4>Key risks & mitigations</h4><ul><li><strong>Trust & errors:</strong> approvals, limits and audit logs</li><li><strong>Data privacy:</strong> least-privilege access, clear retention policy</li><li><strong>Integration cost:</strong> prioritise a few high-value connectors</li><li><strong>Model dependency:</strong> keep the architecture model-agnostic</li></ul></div>
+      <div class="block wide"><h4>How I'd measure success</h4><p>Hours of manual work saved per customer per week · percentage of agent actions approved without edits · time to first automated workflow · weekly active workflows · retention at 90 days · net revenue per workspace.</p></div>
+    </div>
+    <div class="tags"><span class="tag">AI Agents</span><span class="tag">SaaS</span><span class="tag">Strategy</span><span class="tag">PRD</span><span class="tag">Business Model</span></div>
+    <p class="note">Concept-stage project: hypotheses above are what I'm validating, not claimed results.</p>
+  </article>
+
+  <article class="case reveal">
+    <div class="case-head">
+      <div class="num">CASE 02</div>
+      <h3>AI Procurement</h3>
+      <p class="tagline">A concept for AI-powered procurement and supply-chain optimization built for Bangladesh's manufacturing ecosystem.</p>
+      <div class="meta">
+        <div><span>Role</span>Researcher & product strategist</div>
+        <div><span>Stage</span>Concept & research</div>
+        <div><span>Timeline</span>2026</div>
+        <div><span>Domain</span>Supply chain · B2B · AI</div>
+      </div>
+    </div>
+    <div class="blocks">
+      <div class="block"><h4>Context</h4><p>Bangladesh's manufacturing sector, especially export-oriented industries, depends on complex, multi-tier supplier networks. Procurement is often handled through phone calls, spreadsheets and personal relationships, which makes pricing, lead times and supplier reliability hard to compare.</p></div>
+      <div class="block"><h4>Problem space</h4><ul><li>Fragmented supplier discovery and weak price visibility</li><li>Delays and stock-outs from poor demand-to-order planning</li><li>Limited data on supplier performance and compliance</li><li>Heavy manual effort in quotes, approvals and follow-ups</li></ul></div>
+      <div class="block"><h4>Concept</h4><ul><li>Supplier directory with performance and compliance signals</li><li>Automated RFQ and quote comparison</li><li>Demand and reorder forecasting from historical data</li><li>Alerts for delay and price-risk</li></ul></div>
+      <div class="block"><h4>Research approach</h4><ul><li>Map the procurement workflow end to end</li><li>Interview procurement managers and suppliers</li><li>Size the market from factory counts and spend per category</li><li>Identify the single workflow with the highest pain and lowest integration cost</li></ul></div>
+      <div class="block"><h4>Local constraints I'm designing for</h4><p>Relationship-driven trust, mixed digital maturity, WhatsApp-first communication, and payment and credit norms. A product that ignores these will not be adopted, however good the AI.</p></div>
+      <div class="block"><h4>Open questions</h4><ul><li>Will buyers pay, or will suppliers?</li><li>Marketplace model vs. software-only tool?</li><li>Which product category gives the cleanest first wedge?</li></ul></div>
+    </div>
+    <div class="tags"><span class="tag">Supply Chain</span><span class="tag">AI</span><span class="tag">B2B</span><span class="tag">Market Research</span><span class="tag">Emerging Markets</span></div>
+  </article>
+
+  <article class="case reveal">
+    <div class="case-head">
+      <div class="num">CASE 03</div>
+      <h3>MUN Strategy</h3>
+      <p class="tagline">Research-driven strategic frameworks for diplomatic simulations, committee management and geopolitical problem solving.</p>
+      <div class="meta">
+        <div><span>Role</span>Delegate & strategist</div>
+        <div><span>Stage</span>Ongoing</div>
+        <div><span>Timeline</span>2025 — Present</div>
+        <div><span>Domain</span>Research · Negotiation · Leadership</div>
+      </div>
+    </div>
+    <div class="blocks">
+      <div class="block"><h4>What it involves</h4><p>Representing a country's position on complex international issues, building coalitions, drafting resolutions and responding to crises in real time against other delegates with competing goals.</p></div>
+      <div class="block"><h4>My framework</h4><ul><li><strong>Position mapping:</strong> goals, red lines, allies, blockers</li><li><strong>Research brief:</strong> facts, precedents, voting history</li><li><strong>Coalition plan:</strong> who to approach, in what order, with what offer</li><li><strong>Draft early:</strong> shape the text everyone negotiates from</li></ul></div>
+      <div class="block"><h4>Skills built</h4><ul><li>Rapid research and synthesis</li><li>Public speaking and persuasion</li><li>Negotiation and stakeholder management</li><li>Decision-making under uncertainty</li></ul></div>
+      <div class="block"><h4>Why it matters for product work</h4><p>Product leadership is largely stakeholder negotiation: aligning engineers, customers and investors who want different things. MUN is a low-stakes training ground for exactly that.</p></div>
+    </div>
+    <div class="tags"><span class="tag">Strategy</span><span class="tag">Research</span><span class="tag">Negotiation</span><span class="tag">Leadership</span></div>
+    <p class="note">Add conferences attended, awards and committee roles here.</p>
+  </article>
+</section>
+
+<section id="projects">
+  <div class="label reveal">03 — Technical Projects</div>
+  <h2 class="title reveal">Things I've<br>coded.</h2>
+  <div class="projgrid">
+    <div class="proj reveal"><div class="num">PROJECT 01</div><h3>SaaS Starter Product<br>(Multi-Tenant Architecture)</h3><div class="stack">TypeScript · JavaScript · Docker</div><ul><li>Designed and implemented a multi-tenant SaaS architecture using an organization-based data scoping model</li><li>Ensured data isolation and scalability for multiple tenants within a single application</li><li>Applied modern backend structuring practices suitable for early-stage SaaS products</li></ul><div class="tags"><span class="tag">Multi-Tenancy</span><span class="tag">SaaS</span><span class="tag">Docker</span><span class="tag">TypeScript</span></div><a class="gh" href="https://github.com/saimumrafi/saas_product" target="_blank" rel="noopener noreferrer">GitHub · saas_product ↗</a></div>
+    <div class="proj reveal"><div class="num">PROJECT 02</div><h3>25 UVA Online Judge Problems</h3><div class="stack">C++ · Java</div><ul><li>Solved and implemented solutions to 25 competitive programming problems</li><li>Improved algorithmic thinking, problem-solving efficiency, and code optimization skills</li></ul><div class="tags"><span class="tag">Algorithms</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">Problem Solving</span></div><a class="gh" href="https://github.com/saimumrafi/25-uva-problems" target="_blank" rel="noopener noreferrer">GitHub · 25-uva-problems ↗</a></div>
+    <div class="proj reveal"><div class="num">PROJECT 03</div><h3>Odoo Retail ERP Report Demo</h3><div class="stack">Odoo ERP</div><ul><li>Built a demo retail reporting module using Odoo ERP</li><li>Gained practical exposure to ERP workflows, reporting structures, and business data handling</li></ul><div class="tags"><span class="tag">ERP</span><span class="tag">Odoo</span><span class="tag">Reporting</span><span class="tag">Retail</span></div><a class="gh" href="https://github.com/saimumrafi/odoo-retail-erp-demo" target="_blank" rel="noopener noreferrer">GitHub · odoo-retail-erp-demo ↗</a></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="label reveal">04 — Process</div>
+  <h2 class="title reveal">How I take an idea<br>from zero to one.</h2>
+  <div class="steps reveal">
+    <div class="step"><h4>Discover</h4><p>Interview users, observe workflows, study competitors and size the market. Output: a sharp problem statement.</p></div>
+    <div class="step"><h4>Define</h4><p>Pick the user, the job to be done and the success metric. Write the PRD and cut scope hard.</p></div>
+    <div class="step"><h4>Design</h4><p>Map flows, prototype and test with real users before building. Output: validated wireframes.</p></div>
+    <div class="step"><h4>Deliver</h4><p>Ship the smallest useful version with clear priorities, tight feedback loops and a roadmap tied to outcomes.</p></div>
+    <div class="step"><h4>Drive growth</h4><p>Measure, learn and iterate. Refine positioning, pricing and go-to-market from real usage data.</p></div>
+  </div>
+</section>
+
+<section id="methodology">
+  <div class="label reveal">05 — Delivery Methodology</div>
+  <h2 class="title reveal">Scrum and Kanban,<br>matched to the work.</h2>
+  <div class="lead reveal">
+    <p>The process above is <strong>what</strong> I do; this is <strong>how work flows</strong>. I don't treat Agile as a ritual: I pick the method that fits the shape of the work. <strong>Scrum</strong> when there's a clear goal that benefits from a fixed rhythm, and <strong>Kanban</strong> when work is continuous, exploratory or unpredictable.</p>
+  </div>
+
+  <div class="sub reveal">The two systems</div>
+  <div class="compare reveal">
+    <article class="case">
+      <div class="case-head" style="margin-bottom:20px">
+        <div class="num">SCRUM</div>
+        <h3 style="font-size:38px">Rhythm & commitment</h3>
+        <p class="tagline" style="font-size:15px">Time-boxed sprints that turn a product goal into a working increment.</p>
+      </div>
+      <div class="blocks">
+        <div class="block"><h4>My role</h4><p>Product Owner mindset: I own the <strong>product backlog</strong>, order it by value and risk, and write user stories with clear acceptance criteria.</p></div>
+        <div class="block"><h4>Events</h4><ul><li><strong>Sprint planning:</strong> agree one sprint goal</li><li><strong>Daily check-in:</strong> blockers, not status theatre</li><li><strong>Sprint review:</strong> demo the increment, collect feedback</li><li><strong>Retrospective:</strong> change one thing next sprint</li></ul></div>
+        <div class="block"><h4>Artifacts</h4><ul><li>Product backlog (prioritised)</li><li>Sprint backlog and sprint goal</li><li>Increment with a written Definition of Done</li></ul></div>
+        <div class="block"><h4>Best when</h4><p>The goal is clear, scope can be sliced, and fast feedback loops matter, like building an MVP.</p></div>
+      </div>
+    </article>
+    <article class="case">
+      <div class="case-head" style="margin-bottom:20px">
+        <div class="num">KANBAN</div>
+        <h3 style="font-size:38px">Flow & focus</h3>
+        <p class="tagline" style="font-size:15px">A visual board that limits work in progress so things actually finish.</p>
+      </div>
+      <div class="blocks">
+        <div class="block"><h4>Core practices</h4><ul><li><strong>Visualise</strong> every piece of work on one board</li><li><strong>Limit WIP</strong> so nothing sits half-done</li><li><strong>Manage flow</strong> and remove bottlenecks</li><li><strong>Make policies explicit:</strong> what "done" means per column</li></ul></div>
+        <div class="block"><h4>Flow metrics I watch</h4><ul><li>Cycle time (start to done)</li><li>Lead time (request to done)</li><li>Throughput per week</li><li>Aging work items</li></ul></div>
+        <div class="block"><h4>Best when</h4><p>Work arrives continuously or can't be estimated up front: research, discovery, learning and support-style tasks.</p></div>
+        <div class="block"><h4>Why limit WIP</h4><p>Starting five things feels productive; finishing two is. WIP limits protect depth of thinking, which matters most in research.</p></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="sub reveal">The Scrum cycle</div>
+  <div class="cycle reveal"><span>Product Backlog</span><i>→</i><span>Sprint Planning</span><i>→</i><span>Sprint (1–2 weeks)</span><i>→</i><span>Review</span><i>→</i><span>Retrospective</span><i>↻</i></div>
+
+  <div class="sub reveal">A Kanban board, illustrated with my own work</div>
+  <div class="board reveal">
+    <div class="col"><h5>Backlog <em>no limit</em></h5>
+      <div class="kc"><small>Agentra</small>Define trust-ladder levels</div>
+      <div class="kc"><small>Procurement</small>Size the market by category</div>
+      <div class="kc"><small>Odoo</small>Add margin report view</div></div>
+    <div class="col"><h5>In progress <em>WIP 3</em></h5>
+      <div class="kc"><small>Agentra</small>Write PRD for invoice follow-up agent</div>
+      <div class="kc"><small>Procurement</small>Map RFQ workflow end to end</div></div>
+    <div class="col"><h5>Review <em>WIP 2</em></h5>
+      <div class="kc"><small>SaaS Starter</small>Check org-scoped data isolation</div></div>
+    <div class="col"><h5>Done</h5>
+      <div class="kc"><small>UVA</small>Problem set solved and optimised</div>
+      <div class="kc"><small>Portfolio</small>Case studies published</div></div>
+  </div>
+  <p class="note reveal" style="margin-top:6px">Illustrative board to show how I structure work; cards are examples.</p>
+
+  <div class="sub reveal">How each method fits my recent work</div>
+  <div class="cards reveal">
+    <div class="card mapcard"><span class="m">Scrum</span><h4>Agentra</h4>
+      <p><b>Why:</b> a product goal with an MVP to ship and learn from.</p>
+      <p><b>Backlog epics:</b> trust ladder, approvals, audit log, first connector.</p>
+      <p><b>Sample sprint goal:</b> a pilot user can review and approve an agent-drafted payment reminder.</p>
+      <p><b>Done means:</b> action logged with a readable reason.</p></div>
+    <div class="card mapcard"><span class="m">Scrum-lite</span><h4>SaaS Starter (Multi-Tenant)</h4>
+      <p><b>Why:</b> clear technical increments that build on each other.</p>
+      <p><b>One-week sprints:</b> organization model, tenant-scoped data access, Docker setup.</p>
+      <p><b>Done means:</b> data from one organization is provably invisible to another.</p></div>
+    <div class="card mapcard"><span class="m">Kanban</span><h4>AI Procurement</h4>
+      <p><b>Why:</b> research is exploratory; cards are questions, not features.</p>
+      <p><b>Columns:</b> Question → Interviewing → Synthesising → Insight.</p>
+      <p><b>WIP limit of 3</b> prevents shallow, parallel research; I track cycle time from question to insight.</p></div>
+    <div class="card mapcard"><span class="m">Personal Kanban</span><h4>25 UVA Problems</h4>
+      <p><b>Why:</b> solo, continuous practice.</p>
+      <p><b>Columns:</b> To solve → Solving → Optimising → Done.</p>
+      <p><b>WIP limit of 1</b> forces a problem to be finished and optimised before the next.</p></div>
+    <div class="card mapcard"><span class="m">Kanban</span><h4>Odoo Retail ERP Demo</h4>
+      <p><b>Why:</b> small, independent report and data tasks.</p>
+      <p><b>Columns:</b> Ready → Building → Testing → Done.</p>
+      <p><b>Policy:</b> a report is done only when it matches the sample data.</p></div>
+  </div>
+
+  <div class="blend reveal"><h4>My default: Scrumban</h4>
+    <p>For early-stage products I blend both: a prioritised backlog and a clear goal from Scrum, with a Kanban board and WIP limits for day-to-day flow. Planning cadence gives direction; flow metrics keep work honest. I keep the ceremony light and change the system when the data says it's not helping.</p></div>
+  <p class="note reveal">Edit this section to reflect the exact methods and tools (Jira, Trello, Notion, Linear) you've used on each project.</p>
+</section>
+
+<section id="experience">
+  <div class="label reveal">06 — Experience</div>
+  <h2 class="title reveal">How I got here.</h2>
+  <div class="timeline">
+    <div class="item reveal">
+      <div class="date">2026 — Present</div>
+      <h3>Product & Startup Projects</h3>
+      <div class="role">Founder / Product Strategist</div>
+      <p>Building and researching AI-powered products, SaaS opportunities and startup business models.</p>
+      <ul>
+        <li>Defined the vision, user segments, product principles and business model for Agentra</li>
+        <li>Researched procurement and supply-chain pain points in Bangladesh's manufacturing sector</li>
+        <li>Writing PRDs, roadmaps and go-to-market hypotheses for each concept</li>
+        <li>Built a multi-tenant SaaS starter in TypeScript and Docker to understand product architecture first-hand</li>
+      </ul>
+    </div>
+    <div class="item reveal">
+      <div class="date">2025 — 2026</div>
+      <h3>Product Development</h3>
+      <div class="role">Self-directed learning & practice</div>
+      <p>Developing skills across product discovery, market analysis, user research, product strategy and business fundamentals.</p>
+      <ul>
+        <li>Practised end-to-end product work: problem framing, PRDs, prioritisation, metrics</li>
+        <li>Studied SaaS economics, pricing and go-to-market strategy</li>
+        <li>Explored AI systems, agents and automation from a product perspective</li>
+      </ul>
+    </div>
+    <div class="item reveal">
+      <div class="date">2025 — Present</div>
+      <h3>Model United Nations</h3>
+      <div class="role">Delegate</div>
+      <p>Developing research, negotiation, public speaking and strategic decision-making skills through MUN.</p>
+      <ul>
+        <li>Researched and represented country positions on complex global issues</li>
+        <li>Built coalitions and drafted resolutions under time pressure</li>
+      </ul>
+    </div>
+</div>
+</section>
+
+<section id="toolkit">
+  <div class="label reveal">07 — Toolkit</div>
+  <h2 class="title reveal">What I work with.</h2>
+  <div class="skillgrid reveal">
+    <div class="skillbox"><h4>Product</h4><p>Finding, defining and prioritising the right problems.</p>
+      <div class="skills"><span class="skill">Product Strategy</span><span class="skill">Product Discovery</span><span class="skill">PRD</span><span class="skill">Roadmapping</span><span class="skill">Prioritisation</span><span class="skill">Metrics & KPIs</span><span class="skill">Scrum</span><span class="skill">Kanban</span><span class="skill">Agile Delivery</span></div></div>
+    <div class="skillbox"><h4>Research & Insight</h4><p>Turning messy information into decisions.</p>
+      <div class="skills"><span class="skill">User Research</span><span class="skill">Market Research</span><span class="skill">Competitive Analysis</span><span class="skill">Data Analysis</span><span class="skill">Interviewing</span></div></div>
+    <div class="skillbox"><h4>Business</h4><p>Making products viable and growing them.</p>
+      <div class="skills"><span class="skill">Business Modeling</span><span class="skill">Go-To-Market</span><span class="skill">SaaS Economics</span><span class="skill">Pricing</span><span class="skill">Market Sizing</span></div></div>
+    <div class="skillbox"><h4>Technology & Design</h4><p>Enough depth to collaborate closely with builders.</p>
+      <div class="skills"><span class="skill">AI Products</span><span class="skill">AI Agents</span><span class="skill">Automation</span><span class="skill">UX</span><span class="skill">System Design Basics</span></div></div>
+  </div>
+  <div class="sub reveal">Self-assessed strengths</div>
+  <div class="grid2 reveal">
+    <div>
+      <div class="bar" data-w="88"><div><span>Product strategy & discovery</span><span>88%</span></div><i><b></b></i></div>
+      <div class="bar" data-w="82"><div><span>Research & analysis</span><span>82%</span></div><i><b></b></i></div>
+      <div class="bar" data-w="80"><div><span>Negotiation & communication</span><span>80%</span></div><i><b></b></i></div>
+    </div>
+    <div>
+      <div class="bar" data-w="78"><div><span>Business modeling & GTM</span><span>78%</span></div><i><b></b></i></div>
+      <div class="bar" data-w="72"><div><span>AI & technical fluency</span><span>72%</span></div><i><b></b></i></div>
+      <div class="bar" data-w="65"><div><span>Data & quantitative analysis</span><span>65%</span></div><i><b></b></i></div>
+    </div>
+  </div>
+  <div class="sub reveal">Currently learning</div>
+  <div class="skills reveal"><span class="skill">Agent architectures</span><span class="skill">SaaS metrics & unit economics</span><span class="skill">SQL & product analytics</span><span class="skill">Pricing experiments</span></div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="orbit"></div>
+  <div class="label reveal">08 — Contact</div>
+  <h2 class="reveal">Have an idea?<br>Let's build it.</h2>
+  <p class="reveal">I'm open to product roles, internships, collaborations and conversations about ambitious products and interesting problems.</p>
+  <div class="cl reveal">
+    <a href="mailto:rafisaimum34@gmail.com" class="clink p">Email me ↗</a>
+    <a href="https://www.linkedin.com/in/syed-saimum-hasan-rafi-02baa2251" class="clink" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    <a href="https://github.com/saimumrafi" class="clink" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Rafi</div>
+  <div>Product · Strategy · Technology</div>
+  <div><a href="mailto:rafisaimum34@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/syed-saimum-hasan-rafi-02baa2251" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://github.com/saimumrafi" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</footer>
+
+</div>
+<script>
+const reveals=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');e.target.querySelectorAll('.bar').forEach(b=>b.querySelector('b').style.width=b.dataset.w+'%');io.unobserve(e.target)}}),{threshold:.08});
+  reveals.forEach(el=>io.observe(el));
+}else{reveals.forEach(el=>{el.classList.add('active');el.querySelectorAll('.bar').forEach(b=>b.querySelector('b').style.width=b.dataset.w+'%')})}
+const portrait=document.querySelector('.portrait'),bar=document.getElementById('progress');
+const panels=[...document.querySelectorAll('.stat,.card,.step,.skillbox,.proj,.case,.kc,.blend')];
+panels.forEach(el=>el.classList.add('tilt'));
+const sections=[...document.querySelectorAll('section')];
+let sy=0,tick=false;
+let mx=0,my=0;
+function paint(){if(portrait)portrait.style.transform=`translate(${mx*-22}px,${my*-14+sy*.04}px) scale(${1.1+sy*.00012})`}
+function scroll3d(){
+  tick=false;
+  const vh=innerHeight;
+  sections.forEach(sec=>{const r=sec.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;const c=(r.top+Math.min(r.height,vh)/2-vh/2)/vh;sec.style.setProperty('--pr',Math.max(-3,Math.min(3,-c*5)).toFixed(2)+'deg')});
+  panels.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.bottom<-100||r.top>vh+100)return;
+    const c=(r.top+r.height/2-vh/2)/vh,lim=el.classList.contains('case')?3:9;
+    el.style.setProperty('--sx',Math.max(-lim,Math.min(lim,-c*14)).toFixed(2)+'deg');
+  });
+}
+function onScroll(){
+  sy=Math.min(scrollY,innerHeight);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(scrollY/h*100)+'%';paint();
+  if(!tick){tick=true;requestAnimationFrame(scroll3d)}
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+paint();scroll3d();
+if(matchMedia('(hover:hover)').matches){
+  const hero=document.querySelector('.hero');
+  hero.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;paint()});
+  hero.addEventListener('mouseleave',()=>{mx=my=0;paint()});
+  panels.forEach(el=>{
+    const k=el.classList.contains('case')?4:12;
+    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.setProperty('--ry',(x*k).toFixed(2)+'deg');el.style.setProperty('--rx',(-y*k).toFixed(2)+'deg');el.style.setProperty('--tz','8px')});
+    el.addEventListener('mouseleave',()=>{el.style.setProperty('--ry','0deg');el.style.setProperty('--rx','0deg');el.style.setProperty('--tz','0px')});
+  });
+}
+</script>
+</body>
+</html>
