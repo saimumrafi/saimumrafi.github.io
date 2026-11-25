@@ -297,33 +297,6 @@ section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transfo
   <article class="case reveal">
     <div class="case-head">
       <div class="num">CASE 01</div>
-      <h3>Agentra</h3>
-      <p class="tagline">An AI-agent operations platform that lets small and mid-sized businesses delegate repetitive back-office work to autonomous agents, while humans stay in control.</p>
-      <div class="meta">
-        <div><span>Role</span>Founder, product & strategy</div>
-        <div><span>Stage</span>Concept & validation</div>
-        <div><span>Timeline</span>2026 — Present</div>
-        <div><span>Domain</span>AI agents · SaaS · SME ops</div>
-      </div>
-    </div>
-    <div class="blocks">
-      <div class="block"><h4>The problem</h4><p>SMEs run on repetitive manual work: invoice entry, follow-ups, order tracking, report compiling, data copy-paste between tools. They can't afford large ops teams or enterprise automation, so owners and staff burn hours on low-value tasks, and mistakes creep in.</p></div>
-      <div class="block"><h4>Who it's for</h4><ul><li><strong>Primary:</strong> owner-operators and operations managers at businesses of roughly 10–200 people</li><li><strong>Secondary:</strong> accountants and agencies serving many small clients</li><li><strong>Not for (yet):</strong> large enterprises with dedicated IT and RPA teams</li></ul></div>
-      <div class="block"><h4>Core insight</h4><p>Existing automation tools demand setup effort that SMEs don't have, while fully autonomous AI is too risky to trust with money and customers. The gap is <strong>delegation with supervision</strong>: agents that do the work, and people who approve what matters.</p></div>
-      <div class="block"><h4>Solution</h4><ul><li>Role-based agents (e.g. finance, procurement, customer follow-up) configured in plain language</li><li>Human-in-the-loop approvals for high-risk actions</li><li>Full activity log: what the agent did, why, and with which data</li><li>Connectors into the tools businesses already use</li></ul></div>
-      <div class="block"><h4>Product principles</h4><ul><li><strong>Trust ladder:</strong> agents start read-only, then suggest, then act with approval, then act autonomously on low-risk tasks</li><li><strong>Explainable by default:</strong> every action has a readable reason</li><li><strong>Reversible where possible:</strong> undo and audit trails</li></ul></div>
-      <div class="block"><h4>Business model</h4><p>Subscription per workspace with usage tiers by number of agents and monthly tasks, plus paid onboarding for custom workflows. Margin is protected by routing simple tasks to cheaper models and reserving stronger models for complex reasoning.</p></div>
-      <div class="block"><h4>Go-to-market hypothesis</h4><ul><li>Start with one narrow, painful workflow (such as invoice and payment follow-up) rather than a general platform</li><li>Run manual-assisted pilots with 5–10 design partners</li><li>Grow through accountants and consultants who bring multiple clients</li></ul></div>
-      <div class="block"><h4>Key risks & mitigations</h4><ul><li><strong>Trust & errors:</strong> approvals, limits and audit logs</li><li><strong>Data privacy:</strong> least-privilege access, clear retention policy</li><li><strong>Integration cost:</strong> prioritise a few high-value connectors</li><li><strong>Model dependency:</strong> keep the architecture model-agnostic</li></ul></div>
-      <div class="block wide"><h4>How I'd measure success</h4><p>Hours of manual work saved per customer per week · percentage of agent actions approved without edits · time to first automated workflow · weekly active workflows · retention at 90 days · net revenue per workspace.</p></div>
-    </div>
-    <div class="tags"><span class="tag">AI Agents</span><span class="tag">SaaS</span><span class="tag">Strategy</span><span class="tag">PRD</span><span class="tag">Business Model</span></div>
-    <p class="note">Concept-stage project: hypotheses above are what I'm validating, not claimed results.</p>
-  </article>
-
-  <article class="case reveal">
-    <div class="case-head">
-      <div class="num">CASE 02</div>
       <h3>AI Procurement</h3>
       <p class="tagline">A concept for AI-powered procurement and supply-chain optimization built for Bangladesh's manufacturing ecosystem.</p>
       <div class="meta">
@@ -432,11 +405,9 @@ section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transfo
   <div class="sub reveal">A Kanban board, illustrated with my own work</div>
   <div class="board reveal">
     <div class="col"><h5>Backlog <em>no limit</em></h5>
-      <div class="kc"><small>Agentra</small>Define trust-ladder levels</div>
       <div class="kc"><small>Procurement</small>Size the market by category</div>
       <div class="kc"><small>Odoo</small>Add margin report view</div></div>
     <div class="col"><h5>In progress <em>WIP 3</em></h5>
-      <div class="kc"><small>Agentra</small>Write PRD for invoice follow-up agent</div>
       <div class="kc"><small>Procurement</small>Map RFQ workflow end to end</div></div>
     <div class="col"><h5>Review <em>WIP 2</em></h5>
       <div class="kc"><small>SaaS Starter</small>Check org-scoped data isolation</div></div>
@@ -448,11 +419,6 @@ section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transfo
 
   <div class="sub reveal">How each method fits my recent work</div>
   <div class="cards reveal">
-    <div class="card mapcard"><span class="m">Scrum</span><h4>Agentra</h4>
-      <p><b>Why:</b> a product goal with an MVP to ship and learn from.</p>
-      <p><b>Backlog epics:</b> trust ladder, approvals, audit log, first connector.</p>
-      <p><b>Sample sprint goal:</b> a pilot user can review and approve an agent-drafted payment reminder.</p>
-      <p><b>Done means:</b> action logged with a readable reason.</p></div>
     <div class="card mapcard"><span class="m">Scrum-lite</span><h4>SaaS Starter (Multi-Tenant)</h4>
       <p><b>Why:</b> clear technical increments that build on each other.</p>
       <p><b>One-week sprints:</b> organization model, tenant-scoped data access, Docker setup.</p>
@@ -470,9 +436,6 @@ section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transfo
       <p><b>Columns:</b> Ready → Building → Testing → Done.</p>
       <p><b>Policy:</b> a report is done only when it matches the sample data.</p></div>
   </div>
-
-  <div class="blend reveal"><h4>My default: Scrumban</h4>
-    <p>For early-stage products I blend both: a prioritised backlog and a clear goal from Scrum, with a Kanban board and WIP limits for day-to-day flow. Planning cadence gives direction; flow metrics keep work honest. I keep the ceremony light and change the system when the data says it's not helping.</p></div>
   <p class="note reveal">Edit this section to reflect the exact methods and tools (Jira, Trello, Notion, Linear) you've used on each project.</p>
 </section>
 
@@ -486,7 +449,6 @@ section{transform:perspective(2200px) rotateX(var(--pr,0deg));transition:transfo
       <div class="role">Founder / Product Strategist</div>
       <p>Building and researching AI-powered products, SaaS opportunities and startup business models.</p>
       <ul>
-        <li>Defined the vision, user segments, product principles and business model for Agentra</li>
         <li>Researched procurement and supply-chain pain points in Bangladesh's manufacturing sector</li>
         <li>Writing PRDs, roadmaps and go-to-market hypotheses for each concept</li>
         <li>Built a multi-tenant SaaS starter in TypeScript and Docker to understand product architecture first-hand</li>
